@@ -101,7 +101,7 @@ function formaDeEntrega() {
         if(entrega != '1' && entrega != '2'){
             mostrarMensagem('Você digitou uma opção inválida')
             formaDeEntrega()
-        } else if (entrega === '1') {
+        } else {if (entrega === '1') {
                 mostrarMensagem('Você receberá uma tampa sem furo')
                 bebidaEscolhida.tampa = 'tampa sem furo'
             }
@@ -116,8 +116,11 @@ function formaDeEntrega() {
         mostrarMensagem(`Você escolheu a entrega por ${entrega}`)
 
         montarBebida()
+        }
 })
 }
+
+
 
 function pergunta(frase, escolha) {
     rl.question(frase, escolha)
