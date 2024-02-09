@@ -24,35 +24,48 @@ escolherBebidas()
 function escolherBebidas() {
 
     pergunta('Escolha sua bebida, Refrigerantes: Coca, Guaraná, Suco de Uva ou Suco de Laranja: ', (bebida) => {
-    
-            if (bebida === 'Coca' || bebida === 'Guaraná') {
 
-                console.log(`Sua bebida Refrigerante ${bebida} será servida no copo de papel.`)
-                bebidaEscolhida.bebida = bebida
-                bebidaEscolhida.copo = 'papel'
-                pedrasDeGelo(6)
+        if (bebida != 'Coca' && bebida != 'Guaraná' && bebida != 'Suco de Uva' && bebida != 'Suco de Laranja') {
+            console.log('Digite novamente')
+            escolherBebidas()
+        }
 
-            } else {
+        else if (bebida === 'Coca' || bebida === 'Guaraná') {
 
-                console.log(`Sua bebida Suco de ${bebida} será servida no copo de plástico.`)
-                bebidaEscolhida.bebida = bebida
-                bebidaEscolhida.copo = 'plástico'
+            console.log(`Sua bebida Refrigerante ${bebida} será servida no copo de papel.`)
+            bebidaEscolhida.bebida = bebida
+            bebidaEscolhida.copo = 'papel'
+            pedrasDeGelo(6)
 
-                pedrasDeGelo(12)
+        } else {
 
-            }
-    })
+            console.log(`Sua bebida Suco de ${bebida} será servida no copo de plástico.`)
+            bebidaEscolhida.bebida = bebida
+            bebidaEscolhida.copo = 'plástico'
+
+            pedrasDeGelo(12)
+
+        }
+
+    }
+    )
 
 }
 
-function pedrasDeGelo(pedrasDeGelo) {
+function pedrasDeGelo(pedras) {
     pergunta('Você gostaria de pedras de gelo, Sim ou Não ? ', (resposta) => {
-        if (resposta === 'Sim') {
-            console.log(`Você recebeu ${pedrasDeGelo} pedras de gelo`)
-            bebidaEscolhida.gelo = pedrasDeGelo
+
+        if (resposta != 'Sim' && resposta != 'Não') {
+            console.log('Digite novamente')
+            pedrasDeGelo(pedras)
+        }
+
+        else if (resposta === 'Sim') {
+            console.log(`Você recebeu ${pedras} pedras de gelo`)
+            bebidaEscolhida.gelo = pedras
         } else {
             console.log('Você optou por beber sem gelo')
-            bebidaEscolhida.gelo = 0
+            bebidaEscolhida.gelo = '0'
         }
 
         tamanhoDoCopo()
@@ -61,8 +74,14 @@ function pedrasDeGelo(pedrasDeGelo) {
 
 function tamanhoDoCopo() {
     pergunta('Escolha o tamanho do copo, 300ml, 500ml, 700ml: ', (tamanhoMl) => {
-        console.log(`Seu tamanho foi de ${tamanhoMl}`)
-        bebidaEscolhida.tamanho = tamanhoMl
+        if(tamanhoMl != '300ml' && tamanhoMl != '500ml' && tamanhoMl != '700ml'){
+            console.log('Digite novamente')
+            tamanhoDoCopo()
+        } else {
+            
+            console.log(`Seu tamanho foi de ${tamanhoMl}`)
+            bebidaEscolhida.tamanho = tamanhoMl
+        }
 
         formaDeEntrega()
     })
@@ -71,7 +90,10 @@ function tamanhoDoCopo() {
 function formaDeEntrega() {
     pergunta('Escolha sua forma de entrega, delivery ou comer no local: ', (entrega) => {
 
-        if(entrega === 'delivery') {
+        if (entrega != 'delivery' && entrega != 'local'){
+            console.log('Digite novamente')
+        }
+        if (entrega === 'delivery') {
             bebidaEscolhida.tampa = 'tampa sem furo'
         } else {
             bebidaEscolhida.tampa = 'tampa com furo'
@@ -85,7 +107,7 @@ function formaDeEntrega() {
     })
 }
 
-function pergunta(frase, escolha){
+function pergunta(frase, escolha) {
     rl.question(frase, escolha)
 }
 
